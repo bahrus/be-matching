@@ -1,5 +1,7 @@
 # be-matching [TODO]
 
+React to DOM elements coming and going
+
 ## Example 1
 
 ```html
@@ -11,11 +13,12 @@
   <a href="https://youtu.be/0AY1XIkX7bY" itemprop="trailer">Trailer</a>
 </div>
 <script nomodule be-matching=*[itemprop]>
-    console.log(target)
+    console.log(target, added);
+    target.contentEditable = added;
 </script>
 ```
 
-logs all elements from previous sibling with attribute itemprop.
+logs all elements from previous sibling with attribute itemprop.  makes them editable
 
 is shorthand for:
 
@@ -31,11 +34,14 @@ is shorthand for:
     "for": "*[itemprop]",
     "scope": ["upSearch", ":not(script)"],
 }'>
-    export const handler = ({target}) => {
-        console.log(target)
+    export const handler = ({target, added, }) => {
+        console.log(target, added);
+        target.contentEditable = added;
     };
 </script>
 ```
+
+piggy backs on be-vigilant, but value-add is linkage to handler 
 
 ## Example 2
 
@@ -60,8 +66,10 @@ And scope has some utility added to it:
 
 scope.itemprops() return {
   genre: 'Science fiction',
-  
+
 }
+
+actually, a proxy
 
 scope.itemprops({genre: null, director: null}) = {
   genre: 'Science fiction',
