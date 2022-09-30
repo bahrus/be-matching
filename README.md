@@ -46,11 +46,13 @@ is shorthand for:
     "for": "*[itemprop]",
     "scope": ["upSearch", ":not(script)"],
 }'>
-  export class 
-    export const handler = ({target, added, }) => {
+  export class Scriptlet{
+    onMount({target}){
         console.log(target, added);
         target.contentEditable = added;
     };
+  }
+
 </script>
 
 ```
