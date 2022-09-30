@@ -18,6 +18,7 @@ Query DOM elements coming and going, with a dash of Svelte - [scriptlets](https:
 </script>
 <script nomodule be-matching=*[contenteditable]>
     #abortController
+    ////
     if(added){
       target.addEventListener('input', e => {
         //do something
@@ -45,6 +46,7 @@ is shorthand for:
     "for": "*[itemprop]",
     "scope": ["upSearch", ":not(script)"],
 }'>
+  export class 
     export const handler = ({target, added, }) => {
         console.log(target, added);
         target.contentEditable = added;
