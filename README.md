@@ -47,7 +47,7 @@ is shorthand for:
     "scope": ["upSearch", ":not(script)"],
 }'>
   export class Scriptlet{
-    onMount({target}){
+    onMutate({target, added}){
         console.log(target, added);
         target.contentEditable = added;
     };
