@@ -1,6 +1,6 @@
 # be-matching [TODO]
 
-React to DOM elements coming and going
+Query DOM elements coming and going, with a dash of Svelte - [scriptlets](https://learn.microsoft.com/en-us/previous-versions/office/developer/office2000/aa189871(v=office.10)?redirectedfrom=MSDN).
 
 ## Example 1
 
@@ -15,6 +15,17 @@ React to DOM elements coming and going
 <script nomodule be-matching=*[itemprop]>
     console.log(target, added);
     target.contentEditable = added;
+</script>
+<script nomodule be-matching=*[contenteditable]>
+    #abortController
+    if(added){
+      target.addEventListener('input', e => {
+        //do something
+      }, {signal: #abortController})
+    }else{
+      #abortController.abort();
+    }
+    
 </script>
 ```
 
@@ -39,6 +50,7 @@ is shorthand for:
         target.contentEditable = added;
     };
 </script>
+
 ```
 
 piggy backs on be-vigilant, but value-add is linkage to handler 
@@ -63,6 +75,12 @@ val is the value of the itemprop attribute.  Works as long as the last capital l
 scope is the matched element found based on the scope query.  The preceding div in this case.
 
 And scope has some utility added to it:
+
+```JavaScript
+scope.addEventListener({
+  scope
+})
+```
 
 scope.itemprops() return {
   genre: 'Science fiction',
